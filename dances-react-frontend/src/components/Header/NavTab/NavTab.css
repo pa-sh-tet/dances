@@ -1,0 +1,14 @@
+.nav-tab {
+  margin: 49px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-tab__link {
+  text-decoration: none;
+  color: #270515;
+  font-size: 15px;
+  font-weight: 500;
+}

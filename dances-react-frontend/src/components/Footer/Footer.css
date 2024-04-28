@@ -1,0 +1,53 @@
+.footer {
+  height: 100px;
+  width: 1280px;
+  background-color: #270515;
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* outline: 1px red solid; */
+  height: 20px;
+  width: calc(100%-70px);
+  margin: 40px 35px;
+}
+
+.footer__title {
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.footer__links {
+  /* outline: 1px red solid; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 150px;
+  height: 22px;
+}
+
+.footer__link {
+  /* outline: 1px red solid; */
+  /* background-image: url(../../images/Youtube_logo.svg); */
+  width: 38px;
+  height: 25px;
+  background-position: center;
+  background-size: cover;
+}
+
+.vk {
+  background-image: url(../../images/Vk_logo.svg);
+}
+
+.youtube {
+  background-image: url(../../images/Youtube_logo.svg);
+}
+
+.tg {
+  background-image: url(../../images/Telegram_logo.svg);
+  width: 25px;
+}

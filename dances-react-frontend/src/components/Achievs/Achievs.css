@@ -1,0 +1,64 @@
+.achievs {
+  /* outline: 1px red solid; */
+  width: calc(100% - 180px);
+  /* padding: 75px 70px; */
+  height: 700px;
+  padding-top: 55px;
+  margin: 0 auto 95px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.achievs__main {
+  width: 560px;
+  height: 100%;
+}
+
+.achievs__title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  left: -110px;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 0 0 35px 20px;
+  background-color: white;
+  height: 50px;
+  padding-right: 50px;
+  border-radius: 0 8px 8px 0;
+}
+
+.achievs__image {
+  width: 500px;
+  height: 600px;
+  background-image: url(../../images/achievs.jpg);
+  background-size: cover;
+  background-position: center;
+  margin: auto 0;
+  border-radius: 30px;
+}
+
+.achievs__list {
+  height: 530px;
+  width: 90%;
+  padding: 20px;
+  margin: 0;
+  overflow-y: scroll;
+  border: thick double black;
+  background-color: #fffbf61d;
+}
+
+.achievs__item {
+  list-style-type: style sty;
+  margin: 0 0 16px 15px;
+  font-size: 15px;
+}
+
+.achievs__item:last-child {
+  margin: 0 0 0 15px;
+}

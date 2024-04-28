@@ -1,0 +1,42 @@
+.header {
+  /* outline: 1px red solid; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 111px;
+  padding: 0 65px;
+  /* margin: 0; */
+}
+
+.header__link {
+  margin: auto 0;
+  height: 23px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 105px;
+  height: 22px;
+  text-decoration: none;
+}
+
+.header__link-logo {
+  height: 23px;
+  width: 24.59px;
+  background-image: url('../../images/worker-logo.svg');
+  background-size: cover;
+  transition: .2s ease;
+  border: 0;
+}
+
+.header__link-text {
+  font-size: 10px;
+  width: 76px;
+  margin: 0;
+  height: 100%;
+  color: #270515;
+}
+
+.header__nav {
+  /* text-decoration: none; */
+  width: 300px;
+}
