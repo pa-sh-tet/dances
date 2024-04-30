@@ -1,7 +1,7 @@
 .portfolio {
   padding-top: 56px;
   margin-bottom: 95px;
-  height: 913px;
+  /* height: 913px; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -27,6 +27,38 @@
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 45px;
   grid-column-gap: 52px;
-  margin: 0 auto;
+  margin: 50px auto 0;
   /* grid-template-rows: repeat(2, 1fr); */
+}
+
+@media screen and (max-width: 1279px) {
+  .portfolio__cardlist {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 4.07vw;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .portfolio__cardlist {
+    margin: 25px auto 0;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio__title {
+    width: 150px;
+    line-height: 35px;
+    height: 35px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .portfolio__title {
+    width: 120px;
+    line-height: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
 }

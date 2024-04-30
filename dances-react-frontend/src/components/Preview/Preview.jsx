@@ -8,23 +8,25 @@ export default function Preview() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % 3); // 3 - количество изображений
-    }, 3000);
+      setCurrentIndex(prevIndex => (prevIndex + 1) % 3);
+    }, 5000);
 
-    return () => clearInterval(intervalId); // Очистка интервала при размонтировании компонента
-  }, []); // Пустой массив зависимостей, чтобы useEffect сработал только один раз
-
-  const images = [image1, image2, image3];
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <section className='preview'>
-      <div className="carousel">
-        <div className="carousel__inner">
-          {images.map((image, index) => (
-            <div key={index} className={`carousel__item ${index === currentIndex ? 'carousel__item_active' : ''}`}>
-              <img src={image} alt='Фото выступления' />
-            </div>
-          ))}
+      <div className='slider'>
+        <div className='slider__list' style={{transform: `translateX(-${currentIndex * (100/3)}%)`}}>
+          <div className='slider__item'>
+            <img src={image1} alt="заставка" />
+          </div>
+          <div className='slider__item'>
+            <img src={image2} alt="заставка" />
+          </div>
+          <div className='slider__item'>
+            <img src={image3} alt="заставка" />
+          </div>
         </div>
       </div>
       <div className="preview__text">
@@ -34,4 +36,3 @@ export default function Preview() {
     </section>
   );
 }
-

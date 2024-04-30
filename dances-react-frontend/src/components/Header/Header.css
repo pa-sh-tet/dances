@@ -1,11 +1,9 @@
 .header {
-  /* outline: 1px red solid; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 111px;
   padding: 0 65px;
-  /* margin: 0; */
 }
 
 .header__link {
@@ -20,7 +18,7 @@
 }
 
 .header__link-logo {
-  height: 23px;
+  height: 100%;
   width: 24.59px;
   background-image: url('../../images/worker-logo.svg');
   background-size: cover;
@@ -36,7 +34,29 @@
   color: #270515;
 }
 
-.header__nav {
-  /* text-decoration: none; */
-  width: 300px;
+@media screen and (max-width: 700px) {
+  .header {
+    height: 80px;
+    padding: 0 25px;
+  }
+
+  .header__link {
+    height: 16px;
+    width: 95px;
+  }
+
+  .header__link-logo {
+    width: 17.5px;
+  }
+
+  .header__link-text {
+    font-size: 7px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header {
+    height: 50px;
+    padding: 0 15px;
+  }
 }

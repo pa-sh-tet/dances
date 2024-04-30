@@ -10,9 +10,7 @@ export default function Header () {
         <div className='header__link-logo'></div>
         <p className='header__link-text'>ВХОД ДЛЯ СОТРУДНИКОВ</p>
       </Link>
-      <div className='header__nav'>
-        <NavTab />
-      </div>
+      <NavTab />
     </header>
   )
 }
