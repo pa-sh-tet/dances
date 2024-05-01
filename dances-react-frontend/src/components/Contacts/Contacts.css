@@ -11,7 +11,7 @@
 .contacts__container {
   width: 350px;
   height: 450px;
-  background-color: #FBF6F0;
+  background-color: #fbf6f0c4;
   padding: 34px 100px;
   border-radius: 15px;
   border: 3px solid rgba(0, 0, 0, 0.2);
@@ -66,4 +66,50 @@
   color: #FFFFFF;
   border-radius: 5px;
   margin: 15px auto;
+}
+
+@media screen and (max-width: 800px) {
+  .contacts__container {
+    width: 250px;
+    padding: 34px 50px;
+  }
+
+  .contacts__title {
+    left: -25px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .contacts {
+    margin-bottom: 80px;
+  }
+
+  .contacts__container {
+    width: 250px;
+    height: 400px;
+    padding: 34px 30px;
+  }
+
+  .contacts__title {
+    left: 0;
+    font-size: 25px;
+  }
+
+  .contacts__subtitle {
+    font-size: 12px;
+  }
+
+  .contacts__subtitle-number {
+    font-size: 15px;
+  }
+
+  .contacts__input {
+    font-size: 12px;
+  }
+
+  .contacts__button {
+    width: 120px;
+    height: 30px;
+    font-size: 13px;
+  }
 }
