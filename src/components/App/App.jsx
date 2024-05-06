@@ -6,7 +6,7 @@ import Dances from '../Dances/Dances';
 import Main from '../Main/Main';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
