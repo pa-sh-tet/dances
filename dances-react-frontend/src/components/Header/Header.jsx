@@ -2,13 +2,20 @@ import { Link, useLocation } from 'react-router-dom';
 import React from 'react';
 import NavTab from './NavTab/NavTab';
 
-export default function Header ({ isLoggedIn, isAdmin }) {
+export default function Header ({ isLoggedIn, isAdmin, setIsLoggedIn }) {
+  function goToMain() {
+    setIsLoggedIn(false);
+  }
+
+  function goToDances() {
+    setIsLoggedIn(true);
+  }
 
   return (
     <header className="header">
       {isLoggedIn ? (
         <>
-          <Link className='header__exit link'>
+          <Link className='header__exit link' to='/main' onClick={goToMain}>
             ВЫЙТИ
           </Link>
           <div className='header__container'>
@@ -22,7 +29,7 @@ export default function Header ({ isLoggedIn, isAdmin }) {
         </>
       ) : (
         <>
-          <Link to="/" className='header__link'>
+          <Link to="/" className='header__link link' onClick={goToDances}>
             <div className='header__link-logo'></div>
             <p className='header__link-text'>ВХОД ДЛЯ СОТРУДНИКОВ</p>
           </Link>

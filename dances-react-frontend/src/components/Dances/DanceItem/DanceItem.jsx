@@ -1,7 +1,8 @@
 import React from 'react';
-const link = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-export default function DanceItem () {
 
+const link = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+
+export default function DanceItem() {
   return (
     <div className='dance-item'>
       <h2 className='dance-item__title'>Название</h2>
@@ -13,10 +14,10 @@ export default function DanceItem () {
       </p>
       <div className='dance-item__container'>
         <div className="dance-item__video">
-          <frame src={link} />
+          <iframe src={link.replace('watch?v=', 'embed/')} className="dance-item__iframe" allowFullScreen />
         </div>
         <div className="dance-item__video">
-          <iframe src={link} class="dance-item__iframe" />
+          <iframe src={link.replace('watch?v=', 'embed/')} className="dance-item__iframe" allowFullScreen />
         </div>
       </div>
     </div>

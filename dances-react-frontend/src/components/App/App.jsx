@@ -27,7 +27,8 @@ export default function App() {
             <Route path="/main" element={
               <>
                 <Header isLoggedIn={isLoggedIn}
-                  isAdmin={isAdmin} />
+                  isAdmin={isAdmin}
+                  setIsLoggedIn={setIsLoggedIn} />
                 <Main />
               </>}>
             </Route>
@@ -38,6 +39,7 @@ export default function App() {
                 <ProtectedRouteElement element={Header}
                   isLoggedIn={isLoggedIn}
                   isAdmin={isAdmin}
+                  setIsLoggedIn={setIsLoggedIn}
                 />
                 {/* <Dances /> */}
                 <ProtectedRouteElement element={Dances} isLoggedIn={isLoggedIn} />

@@ -21,14 +21,23 @@
 .dance-item__container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin-top: 60px;
 }
 
 .dance-item__video {
+  display: flex;
+  align-items: center;
   margin-top: 50px;
-  width: 100px;
-  height: 50px;
+  width: 100%;
+  margin-top: 50px;
 }
 
-.dance-item__video {
+.dance-item__video:first-child {
   margin-top: 0;
+}
+
+.dance-item__iframe {
+  width: 100%;
+  height: 400px;
 }

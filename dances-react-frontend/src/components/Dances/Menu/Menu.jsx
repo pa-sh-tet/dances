@@ -1,6 +1,11 @@
 import React from 'react';
 
 export default function Menu () {
+  // const [isActiveDance, setIsActiveDance] = useState(false);
+
+  // function setActiveDance() {
+  //   setIsActiveDance(true);
+  // }
 
   return (
     <ul className='menu'>
