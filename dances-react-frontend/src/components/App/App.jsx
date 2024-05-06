@@ -1,22 +1,50 @@
 import React, { useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import Header from '../Header/Header';
-import Preview from '../Preview/Preview';
-import Portfolio from '../Portfolio/Portfolio';
-import Achievs from '../Achievs/Achievs';
-import Contacts from '../Contacts/Contacts';
-import Footer from '../Footer/Footer';
+import Dances from '../Dances/Dances';
+import Main from '../Main/Main';
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dances", { replace: true });
+    } else {
+      navigate("/main", { replace: true });
+    }
+  }, []);
+
   return (
     <>
       <div className='page'>
         <div className='app'>
-          <Header />
-          <Preview />
-          <Portfolio />
-          <Achievs />
-          <Contacts />
-          <Footer />
+          <Routes>
+            <Route path="/main" element={
+              <>
+                <Header isLoggedIn={isLoggedIn}
+                  isAdmin={isAdmin} />
+                <Main />
+              </>}>
+            </Route>
+            <Route path="/dances" element={
+              <>
+                {/* <Header isLoggedIn={isLoggedIn}
+                  isAdmin={isAdmin} /> */}
+                <ProtectedRouteElement element={Header}
+                  isLoggedIn={isLoggedIn}
+                  isAdmin={isAdmin}
+                />
+                {/* <Dances /> */}
+                <ProtectedRouteElement element={Dances} isLoggedIn={isLoggedIn} />
+              </>}>
+            </Route>
+            <Route path="*" element={<Navigate to={isLoggedIn ? "/dances" : "/main"} replace />} />
+          </Routes>
         </div>
       </div>
     </>

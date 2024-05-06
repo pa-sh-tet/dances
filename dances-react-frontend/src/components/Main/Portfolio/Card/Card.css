@@ -23,7 +23,7 @@
 }
 
 .card__link {
-  background-image: url(../../../images/Video__link.svg);
+  background-image: url(../../../../images/Video__link.svg);
   background-color: transparent;
   background-color: rgba(0, 0, 0, 0.8);
   background-repeat: no-repeat;

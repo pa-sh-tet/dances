@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Card/Card';
-import image_title from '../../images/title1.jpg';
+import image_title from '../../../images/title1.jpg';
 const link_rickroll = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 const card_name = 'Название';
 

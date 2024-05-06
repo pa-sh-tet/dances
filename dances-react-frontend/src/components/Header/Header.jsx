@@ -2,15 +2,33 @@ import { Link, useLocation } from 'react-router-dom';
 import React from 'react';
 import NavTab from './NavTab/NavTab';
 
-export default function Header () {
+export default function Header ({ isLoggedIn, isAdmin }) {
 
   return (
     <header className="header">
-      <Link to="/" className='header__link'>
-        <div className='header__link-logo'></div>
-        <p className='header__link-text'>ВХОД ДЛЯ СОТРУДНИКОВ</p>
-      </Link>
-      <NavTab />
+      {isLoggedIn ? (
+        <>
+          <Link className='header__exit link'>
+            ВЫЙТИ
+          </Link>
+          <div className='header__container'>
+            <p className="header__type">
+              {isAdmin ? "Режим редактирования" : "Режим просмотра"}
+            </p>
+            <Link className='header__switch link'>
+              {isAdmin ? "Перейти в режим просмотра" : "Перейти в режим редактирования"}
+            </Link>
+          </div>
+        </>
+      ) : (
+        <>
+          <Link to="/" className='header__link'>
+            <div className='header__link-logo'></div>
+            <p className='header__link-text'>ВХОД ДЛЯ СОТРУДНИКОВ</p>
+          </Link>
+          <NavTab />
+        </>
+      )}
     </header>
   )
 }

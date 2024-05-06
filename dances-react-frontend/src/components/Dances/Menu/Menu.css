@@ -1,0 +1,31 @@
+.menu {
+  width: 25%;
+  /* height: 100%; */
+  padding: 40px 0;
+}
+
+.menu__item {
+  list-style: none;
+  height: 60px;
+  background-color: #270515;
+  color: #fff;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 0 20px;
+  font-size: 16px;
+}
+
+.menu__item:first-child {
+  margin-top: 0;
+}
+
+.menu__item_active {
+  background-color: #fff;
+  color: #270515;
+  border-top: 7px solid #270515;
+  border-bottom: 7px solid #270515;
+  height: 46px;
+  font-weight: 500;
+}

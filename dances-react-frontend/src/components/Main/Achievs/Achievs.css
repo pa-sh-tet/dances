@@ -35,7 +35,7 @@
 .achievs__image {
   width: 500px;
   height: 600px;
-  background-image: url(../../images/achievs.jpg);
+  background-image: url(../../../images/achievs.jpg);
   background-size: cover;
   background-position: center;
   margin: auto 0;

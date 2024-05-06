@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import image1 from '../../images/title1.jpg';
-import image2 from '../../images/title2.jpg';
-import image3 from '../../images/title3.jpg';
+import image1 from '../../../images/title1.jpg';
+import image2 from '../../../images/title2.jpg';
+import image3 from '../../../images/title3.jpg';
 
 export default function Preview() {
   const [currentIndex, setCurrentIndex] = useState(0);

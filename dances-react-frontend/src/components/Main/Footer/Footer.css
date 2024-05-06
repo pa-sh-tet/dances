@@ -39,15 +39,15 @@
 }
 
 .vk {
-  background-image: url(../../images/Vk_logo.svg);
+  background-image: url(../../../images/Vk_logo.svg);
 }
 
 .youtube {
-  background-image: url(../../images/Youtube_logo.svg);
+  background-image: url(../../../images/Youtube_logo.svg);
 }
 
 .tg {
-  background-image: url(../../images/Telegram_logo.svg);
+  background-image: url(../../../images/Telegram_logo.svg);
   width: 25px;
 }
 
