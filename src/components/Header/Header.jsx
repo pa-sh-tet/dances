@@ -1,5 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
-import React from 'react';
+import { Link } from 'react-router-dom';
+// import React from 'react';
 import NavTab from './NavTab/NavTab';
 
 export default function Header ({ isLoggedIn, isAdmin, setIsLoggedIn }) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import Header from '../Header/Header';
@@ -7,7 +7,8 @@ import Main from '../Main/Main';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
+  const isAdmin = useState(false);
 
   const navigate = useNavigate();
 

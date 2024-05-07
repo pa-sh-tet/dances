@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import DanceItem from './DanceItem/DanceItem';
 import Menu from './Menu/Menu';
 
