@@ -4,7 +4,7 @@ html {
 
 .page {
   width: 100%;
-  /* background-color: #FBF6F0; */
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 .app {
@@ -20,5 +20,4 @@ html {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-  font-family: 'Inter', Arial, sans-serif;
 }

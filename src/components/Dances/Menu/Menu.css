@@ -5,6 +5,7 @@
 }
 
 .menu__item {
+  position: relative;
   list-style: none;
   height: 60px;
   background-color: #270515;
@@ -22,10 +23,21 @@
 }
 
 .menu__item_active {
+  background-color: #2705155d;
+  font-weight: 500;
+}
+
+.menu__add-item {
   background-color: #fff;
   color: #270515;
-  border-top: 5px solid #270515;
-  border-bottom: 5px solid #270515;
-  height: 50px;
-  font-weight: 500;
+  height: 56px;
+  border: 2px solid #270515;
+  /* border-left: none; */
+  border-right: none;
+  justify-content: space-between;
+}
+
+.menu__add-image {
+  height: 15px;
+  width: 15px;
 }

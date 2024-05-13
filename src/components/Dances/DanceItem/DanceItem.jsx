@@ -1,8 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PopupWithForm from '../../PopupWithForm/PopupWithForm';
 
-export default function DanceItem({ isAdmin, dance }) {
+export default function DanceItem({
+  isAdmin,
+  dance,
+  handleDeleteDance,
+  closeAllPopups,
+  setIsDeleteDancePopupOpen,
+  isDeleteDancePopupOpen
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [newLink, setNewLink] = useState('');
+
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [link, setLink] = useState('');
+
+  useEffect(() => {
+    setName(dance.name);
+    setDescription(dance.description);
+  }, [dance]);
 
   function setEditing() {
     setIsEditing(true);
@@ -23,6 +40,10 @@ export default function DanceItem({ isAdmin, dance }) {
     }
   }
 
+  function handleDeleteClick() {
+    setIsDeleteDancePopupOpen(true);
+  }
+
   return (
     <div className='dance-item'>
       {isAdmin && (isEditing ? (
@@ -30,22 +51,22 @@ export default function DanceItem({ isAdmin, dance }) {
       ) : (
         <button className='dance-item__edit-button link' type="button" onClick={setEditing}></button>
       ))}
+      {isAdmin && <button className="dance-item__delete-button link" type='button' onClick={handleDeleteClick}></button>}
       {isEditing && isAdmin ? (
         <form className='dance-item__form'>
           <input type="text" className='dance-item__title-input input' value={dance.title} />
           <textarea className='dance-item__description-input input' value={dance.description} />
           {dance.links.map((link, index) => (
-            // <div className=''></div>
-            <input key={index} className='dance-item__link-input input' value={link} readOnly />
+            <input key={index} className='dance-item__link-input input' value={link} />
           ))}
           <input
-            type="text"
+            type="link"
             className='dance-item__link-input input'
             value={newLink}
             onChange={handleNewLinkChange}
             placeholder="Введите ссылку на видео"
           />
-          <button className="dance-item__add-button" type="button" onClick={addNewLink}>Добавить видео танца</button>
+          <button className="dance-item__add-button link" type="button" onClick={addNewLink}>Добавить видео</button>
         </form>
       ) : (
         <>
@@ -62,6 +83,15 @@ export default function DanceItem({ isAdmin, dance }) {
           </div>
         </>
       )}
+      <PopupWithForm
+        isOpen={isDeleteDancePopupOpen}
+        onClose={closeAllPopups}
+        onSubmit={handleDeleteDance}
+        name="delete"
+        buttonText="Да"
+        title="Вы уверены, что хотите удалить этот элемент?"
+        setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+      />
     </div>
   )
 }
