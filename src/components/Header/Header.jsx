@@ -1,14 +1,18 @@
 import { Link } from 'react-router-dom';
-// import React from 'react';
+import React from 'react';
 import NavTab from './NavTab/NavTab';
 
-export default function Header ({ isLoggedIn, isAdmin, setIsLoggedIn }) {
+export default function Header ({ isLoggedIn, isAdmin, setIsAdmin, setIsLoggedIn }) {
   function goToMain() {
     setIsLoggedIn(false);
   }
 
   function goToDances() {
     setIsLoggedIn(true);
+  }
+
+  function switchAdmin() {
+    setIsAdmin(!isAdmin);
   }
 
   return (
@@ -22,7 +26,7 @@ export default function Header ({ isLoggedIn, isAdmin, setIsLoggedIn }) {
             <p className="header__type">
               {isAdmin ? "Режим редактирования" : "Режим просмотра"}
             </p>
-            <Link className='header__switch link'>
+            <Link className='header__switch link' onClick={switchAdmin}>
               {isAdmin ? "Перейти в режим просмотра" : "Перейти в режим редактирования"}
             </Link>
           </div>

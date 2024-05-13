@@ -7,8 +7,8 @@ import Main from '../Main/Main';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [isAdmin, setIsAdmin] = useState(false);
-  const isAdmin = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  // const isAdmin = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,21 +29,21 @@ export default function App() {
               <>
                 <Header isLoggedIn={isLoggedIn}
                   isAdmin={isAdmin}
+                  setIsAdmin={setIsAdmin}
                   setIsLoggedIn={setIsLoggedIn} />
                 <Main />
               </>}>
             </Route>
             <Route path="/dances" element={
               <>
-                {/* <Header isLoggedIn={isLoggedIn}
-                  isAdmin={isAdmin} /> */}
                 <ProtectedRouteElement element={Header}
                   isLoggedIn={isLoggedIn}
                   isAdmin={isAdmin}
+                  setIsAdmin={setIsAdmin}
                   setIsLoggedIn={setIsLoggedIn}
                 />
-                {/* <Dances /> */}
-                <ProtectedRouteElement element={Dances} isLoggedIn={isLoggedIn} />
+                <ProtectedRouteElement element={Dances}
+                 isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
               </>}>
             </Route>
             <Route path="*" element={<Navigate to={isLoggedIn ? "/dances" : "/main"} replace />} />

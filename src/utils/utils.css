@@ -12,3 +12,20 @@
   opacity: 0.7;
   cursor: pointer;
 }
+
+.input {
+  background-color: rgba(226, 223, 223, 0);
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  border-radius: 8px;
+}
+
+.input:focus {
+  transition: .3s ease-in-out;
+  color: #212529;
+  background-color: #fff;
+  border-color: #bdbdbd;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}

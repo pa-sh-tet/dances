@@ -1,17 +1,12 @@
 import React from 'react';
 
-export default function Menu () {
-  // const [isActiveDance, setIsActiveDance] = useState(false);
-
-  // function setActiveDance() {
-  //   setIsActiveDance(true);
-  // }
-
+export default function Menu({ danceList, selectedDanceIndex, onItemClick }) {
   return (
     <ul className='menu'>
-      <li className='menu__item link menu__item_active'>Название</li>
-      <li className='menu__item link'>Название</li>
-      <li className='menu__item link'>Название</li>
+      {danceList.map((dance, index) => (
+        <li key={index} className={`menu__item link ${index === selectedDanceIndex && 'menu__item_active'}`}
+         onClick={() => onItemClick(index)}>{dance.title}</li>
+      ))}
     </ul>
-  )
+  );
 }
