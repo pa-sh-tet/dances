@@ -84,6 +84,11 @@
   transition: .3s ease;
 }
 
+.dance-item__save-button:disabled {
+  opacity: .2;
+  cursor: default;
+}
+
 .dance-item__form {
   display: flex;
   flex-direction: column;

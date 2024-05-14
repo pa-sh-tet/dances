@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DanceItem from './DanceItem/DanceItem';
 import Menu from './Menu/Menu';
+import NewDanceItem from './NewDanceItem/NewDanceItem';
 
 export default function Dances({
   isAdmin,
@@ -9,16 +10,18 @@ export default function Dances({
   closeAllPopups,
   setIsDeleteDancePopupOpen,
   isDeleteDancePopupOpen,
-  handleSave
+  handleSave,
+  selectedDanceIndex,
+  setSelectedDanceIndex
 }) {
   const [isNewItemOpen, setIsNewItemOpen] = useState(false);
-  const [selectedDanceIndex, setSelectedDanceIndex] = useState(0);
 
   const handleAddItemClick = () => {
     setIsNewItemOpen(true);
   };
 
   const handleDanceItemClick = (index) => {
+    setIsNewItemOpen(false);
     setSelectedDanceIndex(index);
   };
   
@@ -30,17 +33,32 @@ export default function Dances({
         selectedDanceIndex={selectedDanceIndex}
         onItemClick={handleDanceItemClick}
         handleAddItemClick={handleAddItemClick}
-      />
-      <DanceItem
-        isAdmin={isAdmin}
-        dance={danceList[selectedDanceIndex]}
-        handleDeleteDance={handleDeleteDance}
-        isDeleteDancePopupOpen={isDeleteDancePopupOpen}
-        setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
-        closeAllPopups={closeAllPopups}
         isNewItemOpen={isNewItemOpen}
-        onSave={handleSave}
       />
+      {danceList[selectedDanceIndex] && (!isNewItemOpen) && (
+        <DanceItem
+          isAdmin={isAdmin}
+          dance={danceList[selectedDanceIndex]}
+          handleDeleteDance={() => handleDeleteDance(selectedDanceIndex)}
+          isDeleteDancePopupOpen={isDeleteDancePopupOpen}
+          setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+          closeAllPopups={closeAllPopups}
+          isNewItemOpen={isNewItemOpen}
+          onSave={handleSave}
+        />
+      )}
+      {(isNewItemOpen || danceList.length == 0)  && (
+        <NewDanceItem
+          isAdmin={isAdmin}
+          dance={danceList[selectedDanceIndex]}
+          handleDeleteDance={handleDeleteDance}
+          isDeleteDancePopupOpen={isDeleteDancePopupOpen}
+          setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+          closeAllPopups={closeAllPopups}
+          isNewItemOpen={isNewItemOpen}
+          onSave={handleSave}
+        />
+      )}
     </section>
   );
 }

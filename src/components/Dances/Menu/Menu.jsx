@@ -6,7 +6,8 @@ export default function Menu({
   danceList,
   selectedDanceIndex,
   onItemClick,
-  handleAddItemClick
+  handleAddItemClick,
+  isNewItemOpen
 }) {
 
   return (
@@ -14,7 +15,7 @@ export default function Menu({
       {isAdmin ? (
         <>
           {danceList.map((dance, index) => (
-            <li key={index} className={`menu__item link ${index === selectedDanceIndex && 'menu__item_active'}`}
+            <li key={index} className={`menu__item link ${index === selectedDanceIndex && (!isNewItemOpen) && 'menu__item_active'}`}
               onClick={() => onItemClick(index)}>{dance.title}</li>
           ))}
           <li className='menu__item menu__add-item link' onClick={handleAddItemClick}>

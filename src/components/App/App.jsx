@@ -6,34 +6,36 @@ import Dances from '../Dances/Dances';
 import Main from '../Main/Main';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isDeleteDancePopupOpen, setIsDeleteDancePopupOpen] = useState(false);
+  const [selectedDanceIndex, setSelectedDanceIndex] = useState(0);
 
   const navigate = useNavigate();
 
   const [danceList, setDanceList] = useState([
     {
-      title: 'Снежинка',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, unde? Et, pariatur. Quis nostrum dolorem nulla dicta cum nemo numquam voluptas. Quis beatae eius vitae reprehenderit aliquam veritati',
+      title: 'Аргентинское танго',
+      description: 'Аргентинское танго – это квинтэссенция страсти. Мало найдется танцев, которые так же сближают партнеров, как этот. Уже аргентинское танго покоряет сердца танцоров, которые преданно и навсегда влюбляются в эти движения и эмоции, и зрителей, которым передается волна куража со сцены.',
       links: [
-        'https://rutube.ru/video/c6cc4d620b1d4338901770a44b3e82f4/?r=wd',
-        'https://rutube.ru/video/54a5eb6ef3f46b667fc8aa799e9c00c3/',
+        'https://rutube.ru/video/fc9d57c54ead9b8d6f8a749fca469236/',
+        'https://rutube.ru/video/9e8685a715f1aabb796e15e6c32ed8a5/',
       ],
     },
     {
-      title: 'Танец 2',
-      description: 'unde? Et, pariatur. Quis nostrum dolorem nulla dicta cum nemo numquam voluptas. Quis beatae eius vitae reprehenderit aliquam veritati',
+      title: 'Джаз-модерн',
+      description: 'Уникальность этого танца состоит в том, что каждый преподаватель имеет собственный взгляд на методику обучения, а ученик может дополнять стиль собственными элементами, создавая свой, ни на что не похожий танец.\n\nУвлечение джаз-модерном прекрасно расширяет творческий потенциал, поскольку человек овладевает сразу множеством элементов из разных стилей и учится их грамотно комбинировать. Этот танец поможет стать королем любого танцпола.\n\n Обязательным условием освоения джаз-модерна является обучение правильному дыханию и грамотному переносу веса тела во время смены элементов.',
       links: [
-
+        'https://rutube.ru/video/fa6d431ece793446bf772aba62168c13/',
       ],
     },
     {
-      title: 'Танец 3',
-      description: 'unde? Et, pariatur. Quis nostrum dolorem nulla dicta cum nemo numquam voluptas. Quis beatae eius vitae reprehenderit aliquam veritat Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit deleniti, reprehenderit natus ipsum repellendus sit amet corrupti quos debitis, ab ullam culpa voluptatum tempora quod vel nulla consectetur, similique voluptatibus',
+      title: 'Бальные танцы',
+      description: 'Парный танец с жесткими хореографическими стандартами. Танцоры полностью привязаны к своему партнеру, которого крайне сложно заменить.',
       links: [
-        
-      ],    
+        'https://rutube.ru/video/fd84b9ec4f2deeaac6c06fa95302bf8a/',
+        'https://rutube.ru/video/c6f1be1ce8e0ab5b80d520393486dd07/',
+      ],
     },
   ]);
   
@@ -50,6 +52,7 @@ export default function App() {
     const updatedDanceList = [...danceList];
     updatedDanceList.splice(index, 1);
     setDanceList(updatedDanceList);
+    setSelectedDanceIndex(0);
   };
 
   const handleSave = (newDance) => {
@@ -91,6 +94,8 @@ export default function App() {
                   closeAllPopups={closeAllPopups}
                   isDeleteDancePopupOpen={isDeleteDancePopupOpen}
                   setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+                  selectedDanceIndex={selectedDanceIndex}
+                  setSelectedDanceIndex={setSelectedDanceIndex}
                 />
               </>}>
             </Route>
