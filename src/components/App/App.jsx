@@ -4,7 +4,6 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import Header from '../Header/Header';
 import Dances from '../Dances/Dances';
 import Main from '../Main/Main';
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -53,6 +52,10 @@ export default function App() {
     setDanceList(updatedDanceList);
   };
 
+  const handleSave = (newDance) => {
+    setDanceList(prevDanceList => [...prevDanceList, newDance]);
+  };
+
   const closeAllPopups = () => {
     setIsDeleteDancePopupOpen(false);
   }
@@ -80,6 +83,7 @@ export default function App() {
                   setIsLoggedIn={setIsLoggedIn}
                 />
                 <ProtectedRouteElement element={Dances}
+                  handleSave={handleSave}
                   danceList={danceList}
                   handleDeleteDance={handleDeleteDance}
                   isAdmin={isAdmin}

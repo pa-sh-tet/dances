@@ -107,10 +107,17 @@
   border: 1px solid rgba(0,0,0,.2);
 }
 
-.dance-item__link-input {
+.dance-item__link {
   margin-top: 30px;
   width: 100%;
   height: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dance-item__link-input {
+  width: 100%;
 }
 
 .dance-item__add-button {
@@ -144,6 +151,18 @@
   top: 120px;
 }
 
-/* .dance-item__delete-button_active {
-  color: #270515;
-} */
+.dance-item__link-delete-button {
+  position: absolute;
+  right: -30px;
+  /* top: 0; */
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../images/Urn.svg);
+  /* background-color: rgba(253, 50, 50, 0.936); */
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  filter: invert(1);
+  /* outline: 1px red solid; */
+}

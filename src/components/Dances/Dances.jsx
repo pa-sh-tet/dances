@@ -8,15 +8,20 @@ export default function Dances({
   danceList,
   closeAllPopups,
   setIsDeleteDancePopupOpen,
-  isDeleteDancePopupOpen
+  isDeleteDancePopupOpen,
+  handleSave
 }) {
-
+  const [isNewItemOpen, setIsNewItemOpen] = useState(false);
   const [selectedDanceIndex, setSelectedDanceIndex] = useState(0);
+
+  const handleAddItemClick = () => {
+    setIsNewItemOpen(true);
+  };
 
   const handleDanceItemClick = (index) => {
     setSelectedDanceIndex(index);
   };
-
+  
   return (
     <section className='dances'>
       <Menu
@@ -24,6 +29,7 @@ export default function Dances({
         danceList={danceList}
         selectedDanceIndex={selectedDanceIndex}
         onItemClick={handleDanceItemClick}
+        handleAddItemClick={handleAddItemClick}
       />
       <DanceItem
         isAdmin={isAdmin}
@@ -31,6 +37,9 @@ export default function Dances({
         handleDeleteDance={handleDeleteDance}
         isDeleteDancePopupOpen={isDeleteDancePopupOpen}
         setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+        closeAllPopups={closeAllPopups}
+        isNewItemOpen={isNewItemOpen}
+        onSave={handleSave}
       />
     </section>
   );

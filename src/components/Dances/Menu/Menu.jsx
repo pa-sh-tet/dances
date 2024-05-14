@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import AddButton from '../../../images/addButton.svg';
 
-export default function Menu({ isAdmin, danceList, selectedDanceIndex, onItemClick }) {
+export default function Menu({
+  isAdmin,
+  danceList,
+  selectedDanceIndex,
+  onItemClick,
+  handleAddItemClick
+}) {
 
   return (
     <ul className='menu'>
@@ -11,7 +17,7 @@ export default function Menu({ isAdmin, danceList, selectedDanceIndex, onItemCli
             <li key={index} className={`menu__item link ${index === selectedDanceIndex && 'menu__item_active'}`}
               onClick={() => onItemClick(index)}>{dance.title}</li>
           ))}
-          <li className='menu__item menu__add-item link'>
+          <li className='menu__item menu__add-item link' onClick={handleAddItemClick}>
             Добавить Танец
             <img className='menu__add-image' src={AddButton} alt="добавить" />
           </li>

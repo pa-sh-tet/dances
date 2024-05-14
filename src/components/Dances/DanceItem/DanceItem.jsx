@@ -7,26 +7,68 @@ export default function DanceItem({
   handleDeleteDance,
   closeAllPopups,
   setIsDeleteDancePopupOpen,
-  isDeleteDancePopupOpen
+  isDeleteDancePopupOpen,
+  isNewItemOpen,
+  onSave
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newLink, setNewLink] = useState('');
 
+  // Состояния для значений названия, описания и ссылок
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [link, setLink] = useState('');
+  const [links, setLinks] = useState([]);
 
   useEffect(() => {
-    setName(dance.name);
-    setDescription(dance.description);
-  }, [dance]);
+    if (isNewItemOpen) {
+      // Если isNewItemOpen равно true, устанавливаем пустые значения для нового элемента
+      setName('');
+      setDescription('');
+      setLinks([]);
+      setIsEditing(true); // Устанавливаем режим редактирования для нового элемента
+    } else {
+      // Устанавливаем значения из объекта dance при первом рендере или при выборе существующего элемента
+      setName(dance.title);
+      setDescription(dance.description);
+      setLinks([...dance.links]);
+    }
+  }, [dance, isNewItemOpen]);
 
   function setEditing() {
     setIsEditing(true);
   }
 
+  function deleteLinkInput(indexToDelete) {
+    setLinks(prevLinks => prevLinks.filter((_, index) => index !== indexToDelete));
+  }
+
   function saveEditing() {
     setIsEditing(false);
+    if (isNewItemOpen) {
+      const newDance = {
+        title: name,
+        description: description,
+        links: links
+      };
+      onSave(newDance); // Вызов функции onSave для сохранения нового элемента
+    } else {
+        const newDance = [
+        dance.title = name,
+        dance.description = description,
+      // Обновляем ссылки в объекте dance
+        dance.links = [...links]
+      ]
+      handleSave(newDance); // Обновление существующего элемента
+    }
+  }
+  
+  // function handleSave() {
+  //   setIsEditing(false);
+  // }
+  
+  
+  function handleSave(newDance) {
+    // Добавить логику сохранения нового элемента
   }
 
   function handleNewLinkChange(event) {
@@ -35,7 +77,7 @@ export default function DanceItem({
 
   function addNewLink() {
     if (newLink.trim() !== '') {
-      dance.links.push(newLink);
+      setLinks(prevLinks => [...prevLinks, newLink]);
       setNewLink('');
     }
   }
@@ -52,20 +94,42 @@ export default function DanceItem({
         <button className='dance-item__edit-button link' type="button" onClick={setEditing}></button>
       ))}
       {isAdmin && <button className="dance-item__delete-button link" type='button' onClick={handleDeleteClick}></button>}
-      {isEditing && isAdmin ? (
+      {isNewItemOpen ? (
         <form className='dance-item__form'>
-          <input type="text" className='dance-item__title-input input' value={dance.title} />
-          <textarea className='dance-item__description-input input' value={dance.description} />
-          {dance.links.map((link, index) => (
-            <input key={index} className='dance-item__link-input input' value={link} />
-          ))}
-          <input
-            type="link"
-            className='dance-item__link-input input'
-            value={newLink}
-            onChange={handleNewLinkChange}
-            placeholder="Введите ссылку на видео"
+          <input 
+            type="text" 
+            className='dance-item__title-input input' 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
           />
+          <textarea 
+            className='dance-item__description-input input' 
+            value={description} 
+            onChange={(e) => setDescription(e.target.value)} 
+          />
+          {links.map((link, index) => (
+            <div className='dance-item__link' key={index}>
+              <input 
+                className='dance-item__link-input input' 
+                value={link} 
+                onChange={(e) => {
+                  const newLinks = [...links];
+                  newLinks[index] = e.target.value;
+                  setLinks(newLinks);
+                }} 
+              />
+              <button className='dance-item__link-delete-button link' type='button' onClick={() => deleteLinkInput(index)} />
+            </div>
+          ))}
+          <div className='dance-item__link'>
+            <input
+              type="link"
+              className='dance-item__link-input input'
+              value={newLink}
+              onChange={handleNewLinkChange}
+              placeholder="Введите ссылку на видео"
+            />
+          </div>
           <button className="dance-item__add-button link" type="button" onClick={addNewLink}>Добавить видео</button>
         </form>
       ) : (
