@@ -9,7 +9,8 @@ export default function DanceItem({
   setIsDeleteDancePopupOpen,
   isDeleteDancePopupOpen,
   isNewItemOpen,
-  onSave
+  onSave,
+  isModifing
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newLink, setNewLink] = useState('');
@@ -69,12 +70,12 @@ export default function DanceItem({
 
   return (
     <div className='dance-item'>
-      {isAdmin && (isEditing ? (
+      {isAdmin && isModifing && (isEditing ? (
         <button className='dance-item__save-button link' type="button" onClick={saveEditing}></button>
       ) : (
         <button className='dance-item__edit-button link' type="button" onClick={setEditing}></button>
       ))}
-      {isAdmin && <button className="dance-item__delete-button link" type='button' onClick={handleDeleteClick}></button>}
+      {isAdmin && isModifing && <button className="dance-item__delete-button link" type='button' onClick={handleDeleteClick}></button>}
       {isAdmin && isEditing ? (
         <form className='dance-item__form'>
           <input

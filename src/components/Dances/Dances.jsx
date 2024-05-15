@@ -12,7 +12,8 @@ export default function Dances({
   isDeleteDancePopupOpen,
   handleSave,
   selectedDanceIndex,
-  setSelectedDanceIndex
+  setSelectedDanceIndex,
+  isModifing
 }) {
   const [isNewItemOpen, setIsNewItemOpen] = useState(false);
 
@@ -34,10 +35,12 @@ export default function Dances({
         onItemClick={handleDanceItemClick}
         handleAddItemClick={handleAddItemClick}
         isNewItemOpen={isNewItemOpen}
+        isModifing={isModifing}
       />
       {danceList[selectedDanceIndex] && (!isNewItemOpen) && (
         <DanceItem
           isAdmin={isAdmin}
+          isModifing={isModifing}
           dance={danceList[selectedDanceIndex]}
           handleDeleteDance={() => handleDeleteDance(selectedDanceIndex)}
           isDeleteDancePopupOpen={isDeleteDancePopupOpen}

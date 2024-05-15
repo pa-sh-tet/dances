@@ -7,12 +7,13 @@ export default function Menu({
   selectedDanceIndex,
   onItemClick,
   handleAddItemClick,
-  isNewItemOpen
+  isNewItemOpen,
+  isModifing
 }) {
 
   return (
     <ul className='menu'>
-      {isAdmin ? (
+      {isAdmin && isModifing ? (
         <>
           {danceList.map((dance, index) => (
             <li key={index} className={`menu__item link ${index === selectedDanceIndex && (!isNewItemOpen) && 'menu__item_active'}`}

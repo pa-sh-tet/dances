@@ -4,10 +4,12 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import Header from '../Header/Header';
 import Dances from '../Dances/Dances';
 import Main from '../Main/Main';
+import Login from '../Login/Login';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isModifing, setIsModifing] = useState(false);
   const [isDeleteDancePopupOpen, setIsDeleteDancePopupOpen] = useState(false);
   const [selectedDanceIndex, setSelectedDanceIndex] = useState(0);
 
@@ -38,7 +40,28 @@ export default function App() {
       ],
     },
   ]);
+
+  const UsersData = [
+    {
+      login: 'alex',
+      password: '1111',
+      admin: false,
+    },
+    {
+      login: 'fred',
+      password: '2222',
+      admin: false,
+    },
+    {
+      login: 'admin',
+      password: 'admin',
+      admin: true,
+    }
+  ];
   
+  const mainCodeword = 'admin';
+
+
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -47,6 +70,18 @@ export default function App() {
       navigate("/main", { replace: true });
     }
   }, []);
+
+  function handleLogin(login, password) {
+    // Проверяем каждый объект в массиве UsersData
+    for (const user of UsersData) {
+      // Если логин и пароль совпадают с данными в массиве, устанавливаем isLoggedIn в true
+      if (user.login === login && user.password === password) {
+        navigate('/dances');
+        return true;
+      }
+    }
+    return false;
+  };
 
   const handleDeleteDance = (index) => {
     const updatedDanceList = [...danceList];
@@ -68,11 +103,19 @@ export default function App() {
       <div className='page'>
         <div className='app'>
           <Routes>
+            <Route path="/signin"
+              element={<Login
+                onLogin={handleLogin}
+                setIsAdmin={setIsAdmin}
+                mainCodeword={mainCodeword}
+              />}>
+            </Route>
             <Route path="/main" element={
               <>
                 <Header isLoggedIn={isLoggedIn}
                   isAdmin={isAdmin}
-                  setIsAdmin={setIsAdmin}
+                  isModifing={isModifing}
+                  setIsModifing={setIsModifing}
                   setIsLoggedIn={setIsLoggedIn} />
                 <Main />
               </>}>
@@ -80,9 +123,10 @@ export default function App() {
             <Route path="/dances" element={
               <>
                 <ProtectedRouteElement element={Header}
-                  isLoggedIn={isLoggedIn}
                   isAdmin={isAdmin}
-                  setIsAdmin={setIsAdmin}
+                  isLoggedIn={isLoggedIn}
+                  isModifing={isModifing}
+                  setIsModifing={setIsModifing}
                   setIsLoggedIn={setIsLoggedIn}
                 />
                 <ProtectedRouteElement element={Dances}
@@ -90,6 +134,7 @@ export default function App() {
                   danceList={danceList}
                   handleDeleteDance={handleDeleteDance}
                   isAdmin={isAdmin}
+                  isModifing={isModifing}
                   isLoggedIn={isLoggedIn}
                   closeAllPopups={closeAllPopups}
                   isDeleteDancePopupOpen={isDeleteDancePopupOpen}
