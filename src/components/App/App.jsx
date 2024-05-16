@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Dances from '../Dances/Dances';
 import Main from '../Main/Main';
 import Login from '../Login/Login';
+import AdminPage from '../AdminPage/AdminPage';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,19 +44,22 @@ export default function App() {
 
   const UsersData = [
     {
+      fio: 'Иванов Иван Иванович',
+      date: '22.02.1914',
       login: 'alex',
-      password: '1111',
-      admin: false,
+      password: '1111'
     },
     {
+      fio: 'Ушаков Иван Иванович',
+      date: '22.02.2004',
       login: 'fred',
       password: '2222',
-      admin: false,
     },
     {
+      fio: 'Петорв Иван Иванович',
+      date: '22.02.1995', 
       login: 'admin',
       password: 'admin',
-      admin: true,
     }
   ];
   
@@ -144,8 +148,24 @@ export default function App() {
                 />
               </>}>
             </Route>
+            <Route path="/admin" element={
+              <>
+                <ProtectedRouteElement element={Header}
+                  isAdmin={isAdmin}
+                  isLoggedIn={isLoggedIn}
+                  isModifing={isModifing}
+                  setIsModifing={setIsModifing}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
+                <ProtectedRouteElement element={AdminPage}
+                  // isAdmin={isAdmin}
+                  UsersList={UsersData}
+                  isLoggedIn={isLoggedIn}
+                />
+              </>}>
+            </Route>
             <Route path="*" element={<Navigate to={isLoggedIn ? "/dances" : "/main"} replace />} />
-          </Routes>
+          </Routes> 
         </div>
       </div>
     </>

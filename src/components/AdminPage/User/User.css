@@ -1,0 +1,93 @@
+.user {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  border-top: 1px solid black;
+  border-right: none;
+  border-left: none;
+}
+
+.user__index {
+  display: flex;
+  align-items: center;
+  width: 5%;
+  justify-content: center;
+  border-right: 1px solid black;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.user__types {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  justify-content: space-around;
+  width: 10%;
+}
+
+.user__type {
+  color: rgba(100, 100, 100, 0.533);
+  text-align: right;
+}
+
+.user__container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  justify-content: space-around;
+  border-right: 1px solid black;
+  width: 75%;
+}
+
+.user__item {
+  color: black;
+}
+
+.user__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* width: 100px; */
+}
+
+.user__edit-button {
+  /* display: flex;
+  align-items: center; */
+  background-image: url(../../../images/EditAvatar.svg);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #000000;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  border: none;
+  background-size: 20px 20px;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  object-fit: cover;
+  transition: .3s ease;
+  /* filter: invert(1); */
+  margin: auto;
+}
+
+.user__delete-button {
+  display: flex;
+  outline: 1px solid red;
+  border: none;
+  background-image: url(../../../images/Urn.svg);
+  background-color: rgba(253, 50, 50, 0.936);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  border: none;
+  background-size: 20px 20px;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  object-fit: cover;
+  transition: .3s ease;
+  right: 50px;
+  top: 120px;
+  /* filter: invert(1); */
+}

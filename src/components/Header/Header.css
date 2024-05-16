@@ -96,3 +96,12 @@
   color: #270515;
   margin-left: auto;
 }
+
+.header__admin {
+  font-size: 15px;
+  text-decoration: none;
+  color: #fff;
+  background-color:rgb(77, 109, 255);
+  padding: 10px;
+  border-radius: 5px;
+}

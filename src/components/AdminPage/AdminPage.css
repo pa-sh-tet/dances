@@ -1,0 +1,22 @@
+.admin {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.admin__container {
+  /* outline: 1px red solid; */
+  width: 80%;
+  height: auto;
+  background-color: #FFF;
+  margin: 100px;
+  border-radius: 10px;
+}
+
+.admin__title { 
+  padding: 20px 5px;
+  text-align: center;
+  font-size: 30px;
+}
