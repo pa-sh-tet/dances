@@ -45,7 +45,7 @@ export default function DanceItem({
       };
       onSave(newDance); // Вызов функции onSave для сохранения нового элемента
     } else {
-        const newDance = [
+      const newDance = [
         dance.title = name,
         dance.description = description,
         dance.links = [...links]
@@ -136,7 +136,7 @@ export default function DanceItem({
         name="delete"
         buttonText="Да"
         title="Вы уверены, что хотите удалить этот танец?"
-        setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+        setIsDeletePopupOpen={setIsDeleteDancePopupOpen}
       />
     </div>
   )

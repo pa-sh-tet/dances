@@ -35,14 +35,16 @@ export default function Header ({ isLoggedIn, isModifing, setIsModifing, setIsLo
                   Сотрудники
                 </Link>
               )}
-              <div className='header__container'>
-                <p className="header__type">
-                  {isModifing ? "Режим редактирования" : "Режим просмотра"}
-                </p>
-                <Link className='header__switch link' onClick={handleModifing}>
-                  {isModifing ? "Перейти в режим просмотра" : "Перейти в режим редактирования"}
-                </Link>
-              </div>
+              {location.pathname === '/dances' && (
+                <div className='header__container'>
+                  <p className="header__type">
+                    {isModifing ? "Режим редактирования" : "Режим просмотра"}
+                  </p>
+                  <Link className='header__switch link' onClick={handleModifing}>
+                    {isModifing ? "Перейти в режим просмотра" : "Перейти в режим редактирования"}
+                  </Link>
+                </div>
+              )}
             </>
           ) : (
             <></>

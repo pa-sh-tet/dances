@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default function PopupWithForm({ title, name, children, isOpen, buttonText, onClose, onSubmit, setIsDeleteDancePopupOpen }) {
+export default function PopupWithForm({ title, name, children, isOpen, buttonText, onClose, onSubmit, setIsDeletePopupOpen }) {
   function handleSubmit(event) {
     event.preventDefault(); // Предотвращение отправки формы
     onSubmit(); // Вызов обработчика onSubmit
-    setIsDeleteDancePopupOpen(false);
+    setIsDeletePopupOpen(false);
   }
   
   return (

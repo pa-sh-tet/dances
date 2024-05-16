@@ -12,6 +12,7 @@ export default function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isModifing, setIsModifing] = useState(false);
   const [isDeleteDancePopupOpen, setIsDeleteDancePopupOpen] = useState(false);
+  const [isDeleteUserPopupOpen, setIsDeleteUserPopupOpen] = useState(false);
   const [selectedDanceIndex, setSelectedDanceIndex] = useState(0);
 
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function App() {
     },
   ]);
 
-  const UsersData = [
+  const [usersList, setUserList] = useState([
     {
       fio: 'Иванов Иван Иванович',
       date: '22.02.1914',
@@ -59,9 +60,9 @@ export default function App() {
       fio: 'Петорв Иван Иванович',
       date: '22.02.1995', 
       login: 'admin',
-      password: 'admin',
+      password: 'asdasda',
     }
-  ];
+  ]);
   
   const mainCodeword = 'admin';
 
@@ -76,8 +77,8 @@ export default function App() {
   }, []);
 
   function handleLogin(login, password) {
-    // Проверяем каждый объект в массиве UsersData
-    for (const user of UsersData) {
+    // Проверяем каждый объект в массиве usersList
+    for (const user of usersList) {
       // Если логин и пароль совпадают с данными в массиве, устанавливаем isLoggedIn в true
       if (user.login === login && user.password === password) {
         navigate('/dances');
@@ -87,6 +88,14 @@ export default function App() {
     return false;
   };
 
+  const handleSaveDance = (newDance) => {
+    setDanceList(prevDanceList => [...prevDanceList, newDance]);
+  };
+
+  const handleSaveUser = (newUser) => {
+    setUserList(prevUserList => [...prevUserList, newUser]);
+  };
+
   const handleDeleteDance = (index) => {
     const updatedDanceList = [...danceList];
     updatedDanceList.splice(index, 1);
@@ -94,12 +103,17 @@ export default function App() {
     setSelectedDanceIndex(0);
   };
 
-  const handleSave = (newDance) => {
-    setDanceList(prevDanceList => [...prevDanceList, newDance]);
+  const handleDeleteUser = (index) => {
+    const updatedUserList = [...usersList];
+    updatedUserList.splice(index, 1);
+    setUserList(updatedUserList);
   };
+
+  
 
   const closeAllPopups = () => {
     setIsDeleteDancePopupOpen(false);
+    setIsDeleteUserPopupOpen(false);
   }
 
   return (
@@ -134,7 +148,7 @@ export default function App() {
                   setIsLoggedIn={setIsLoggedIn}
                 />
                 <ProtectedRouteElement element={Dances}
-                  handleSave={handleSave}
+                  handleSave={handleSaveDance}
                   danceList={danceList}
                   handleDeleteDance={handleDeleteDance}
                   isAdmin={isAdmin}
@@ -158,9 +172,13 @@ export default function App() {
                   setIsLoggedIn={setIsLoggedIn}
                 />
                 <ProtectedRouteElement element={AdminPage}
-                  // isAdmin={isAdmin}
-                  UsersList={UsersData}
+                  UsersList={usersList}
                   isLoggedIn={isLoggedIn}
+                  onSave={handleSaveUser}
+                  isDeleteUserPopupOpen={isDeleteUserPopupOpen}
+                  setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen}
+                  closeAllPopups={closeAllPopups}
+                  handleDeleteUser={handleDeleteUser}
                 />
               </>}>
             </Route>

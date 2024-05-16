@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: row;
   height: 150px;
-  border-top: 1px solid black;
+  border-top: 2px #E8E8E8 solid;
   border-right: none;
   border-left: none;
 }
@@ -13,7 +13,7 @@
   align-items: center;
   width: 5%;
   justify-content: center;
-  border-right: 1px solid black;
+  border-right: 2px #E8E8E8 solid;
   font-weight: 500;
   font-size: 20px;
 }
@@ -36,7 +36,7 @@
   flex-direction: column;
   padding: 0 10px;
   justify-content: space-around;
-  border-right: 1px solid black;
+  border-right: 2px #E8E8E8 solid;
   width: 75%;
 }
 
@@ -48,12 +48,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* width: 100px; */
+  align-items: center;
+  width: 10%;
 }
 
 .user__edit-button {
-  /* display: flex;
-  align-items: center; */
   background-image: url(../../../images/EditAvatar.svg);
   background-color: rgba(0, 0, 0, 0.8);
   color: #000000;
@@ -61,14 +60,22 @@
   background-position: center;
   border-radius: 50%;
   border: none;
-  background-size: 20px 20px;
-  height: 50px;
-  width: 50px;
+  background-size: 15px 15px;
+  height: 40px;
+  width: 40px;
   padding: 0;
   object-fit: cover;
   transition: .3s ease;
-  /* filter: invert(1); */
-  margin: auto;
+  display: flex;
+}
+
+.user__edit-button_active {
+  background-color: rgba(87, 176, 63, 0.8);
+}
+
+.user__edit-button_active:disabled {
+  opacity: .2;
+  cursor: default;
 }
 
 .user__delete-button {
@@ -81,13 +88,10 @@
   background-position: center;
   border-radius: 50%;
   border: none;
-  background-size: 20px 20px;
-  height: 50px;
-  width: 50px;
+  background-size: 15px 15px;
+  height: 40px;
+  width: 40px;
   padding: 0;
   object-fit: cover;
   transition: .3s ease;
-  right: 50px;
-  top: 120px;
-  /* filter: invert(1); */
 }

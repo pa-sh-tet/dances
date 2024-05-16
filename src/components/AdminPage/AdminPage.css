@@ -13,10 +13,25 @@
   background-color: #FFF;
   margin: 100px;
   border-radius: 10px;
+  border: 3px #E8E8E8 solid;
 }
 
 .admin__title { 
-  padding: 20px 5px;
+  padding: 40px 5px;
   text-align: center;
   font-size: 30px;
+}
+
+.admin__add-button {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-top: 3px #E8E8E8 solid;
+  text-align: left;
+  padding: 0  20px;
+  background-color:#f0f0f0;
+  background-image: url(../../images/addButton.svg);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position:96%;
 }
