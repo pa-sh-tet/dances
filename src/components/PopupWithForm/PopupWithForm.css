@@ -70,3 +70,7 @@
   background-color: transparent;
   background-image: url(../../images/CloseIcon.svg);
 }
+
+.popup__input {
+  margin-bottom: 30px;
+}

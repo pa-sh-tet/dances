@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import User from './User/User';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 export default function AdminPage({
   UsersList,
@@ -7,7 +8,8 @@ export default function AdminPage({
   isDeleteUserPopupOpen,
   setIsDeleteUserPopupOpen,
   closeAllPopups,
-  handleDeleteUser
+  handleDeleteUser,
+  usersList
 }) {
   const [isNewUserOpen, setIsNewUserOpen] = useState(false);
   const [newUser, setNewUser] = useState({
@@ -18,7 +20,22 @@ export default function AdminPage({
   });
 
   const handleAddUserClick = () => {
+    setNewUser({
+      fio: '',
+      date: '',
+      login: '',
+      password: ''
+    });
     setIsNewUserOpen(true);
+  };
+
+  const handleSaveNewUser = () => {
+    if (!usersList.some(user => user.login === newUser.login)) {
+      onSave(newUser);
+      setIsNewUserOpen(false);
+    } else {
+      alert('Логин уже существует!');
+    }
   };
 
   return (
@@ -28,34 +45,56 @@ export default function AdminPage({
         <ul className='admin__list'>
           {UsersList.map((user, index) => (
             <User
+              key={index}
               user={user}
-              index={index+1}
+              index={index + 1}
               onSave={onSave} 
-              isNewUserOpen={isNewUserOpen}
               isDeleteUserPopupOpen={isDeleteUserPopupOpen}
               setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen}
               closeAllPopups={closeAllPopups}
               handleDeleteUser={() => handleDeleteUser(index)}
-              setIsNewUserOpen={setIsNewUserOpen}
             />
           ))}
-          {isNewUserOpen && (
-            <User
-              key={0}
-              user={newUser}
-              index={0}
-              onSave={onSave} 
-              isNewUserOpen={true}
-              isDeleteUserPopupOpen={isDeleteUserPopupOpen}
-              setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen}
-              closeAllPopups={closeAllPopups}
-              handleDeleteUser={() => handleDeleteUser(newUser)}
-              setIsNewUserOpen={setIsNewUserOpen}
-            />
-          )}
         </ul>
         <button className='admin__add-button link' onClick={handleAddUserClick}>Добавить сотрудника</button>
       </div>
+      <PopupWithForm
+        title="Добавить нового сотрудника"
+        name="add-user"
+        isOpen={isNewUserOpen}
+        buttonText="Сохранить"
+        onClose={() => setIsNewUserOpen(false)}
+        onSubmit={handleSaveNewUser}
+      >
+        <input
+          type="text"
+          placeholder="ФИО"
+          value={newUser.fio}
+          onChange={(e) => setNewUser({ ...newUser, fio: e.target.value })}
+          className="popup__input input"
+        />
+        <input
+          type="date"
+          placeholder="Дата рождения"
+          value={newUser.date}
+          onChange={(e) => setNewUser({ ...newUser, date: e.target.value })}
+          className="popup__input input"
+        />
+        <input
+          type="text"
+          placeholder="Логин"
+          value={newUser.login}
+          onChange={(e) => setNewUser({ ...newUser, login: e.target.value })}
+          className="popup__input input"
+        />
+        <input
+          type="password"
+          placeholder="Пароль"
+          value={newUser.password}
+          onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+          className="popup__input input"
+        />
+      </PopupWithForm>
     </section>
   );
 }

@@ -8,8 +8,8 @@ import Login from '../Login/Login';
 import AdminPage from '../AdminPage/AdminPage';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(true);
   const [isModifing, setIsModifing] = useState(false);
   const [isDeleteDancePopupOpen, setIsDeleteDancePopupOpen] = useState(false);
   const [isDeleteUserPopupOpen, setIsDeleteUserPopupOpen] = useState(false);
@@ -24,6 +24,9 @@ export default function App() {
       links: [
         'https://rutube.ru/video/fc9d57c54ead9b8d6f8a749fca469236/',
         'https://rutube.ru/video/9e8685a715f1aabb796e15e6c32ed8a5/',
+        // https://rutube.ru/video/fc9d57c54ead9b8d6f8a749fca469236/?t=0
+        'https://rutube.ru/video/private/1c71a5d111f433a71342883114d9e1cc/?p=F5Pg_A65QT28zHHQMiO14g',
+        'https://rutube.ru/play/embed/1c71a5d111f433a71342883114d9e1cc/?p=F5Pg_A65QT28zHHQMiO14g'
       ],
     },
     {
@@ -179,6 +182,7 @@ export default function App() {
                   setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen}
                   closeAllPopups={closeAllPopups}
                   handleDeleteUser={handleDeleteUser}
+                  usersList={usersList}
                 />
               </>}>
             </Route>

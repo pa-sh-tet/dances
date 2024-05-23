@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PopupWithForm from '../../PopupWithForm/PopupWithForm';
 
-export default function DanceItem({
+export default function 
+
+DanceItem({
   isAdmin,
   dance,
   handleDeleteDance,
@@ -121,7 +123,9 @@ export default function DanceItem({
           <div className='dance-item__container'>
             {dance.links.map((link, index) => (
               <div key={index} className="dance-item__video">
-                <iframe src={link.replace('video/', 'play/embed/').replace('/?r=wd', '')}
+                <iframe src={link.includes('video/private')
+                  ? link.replace('video/private', 'play/embed')
+                  : link.replace('video/', 'play/embed/').replace('/?r=wd', '')}
                   className="dance-item__iframe" frameBorder="0" allow="clipboard-write; autoplay"
                   webkitAllowFullScreen mozallowfullscreen allowFullScreen />
               </div>
@@ -136,7 +140,7 @@ export default function DanceItem({
         name="delete"
         buttonText="Да"
         title="Вы уверены, что хотите удалить этот танец?"
-        setIsDeletePopupOpen={setIsDeleteDancePopupOpen}
+        // setIsDeletePopupOpen={setIsDeleteDancePopupOpen}
       />
     </div>
   )

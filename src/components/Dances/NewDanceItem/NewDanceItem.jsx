@@ -106,7 +106,7 @@ export default function NewDanceItem({
                   const newLinks = [...links];
                   newLinks[index] = e.target.value;
                   setLinks(newLinks);
-                }} 
+                }}
               />
               <button className='dance-item__link-delete-button link' type='button' onClick={() => deleteLinkInput(index)} />
             </div>
@@ -130,7 +130,7 @@ export default function NewDanceItem({
         name="delete"
         buttonText="Да"
         title="Вы уверены, что хотите удалить этот танец?"
-        setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+        // setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
       />
     </div>
   )
