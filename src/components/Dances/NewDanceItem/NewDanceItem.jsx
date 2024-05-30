@@ -9,11 +9,13 @@ export default function NewDanceItem({
   setIsDeleteDancePopupOpen,
   isDeleteDancePopupOpen,
   isNewItemOpen,
-  onSave
+  onSave,
+  setSelectedDanceIndex
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newLink, setNewLink] = useState('');
   const [isChanged, setIsChanged] = useState(false);
+  const [nameError, setNameError] = useState(''); // Состояние для ошибки названия
   // Состояния для значений названия, описания и ссылок
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -22,18 +24,24 @@ export default function NewDanceItem({
     setName('');
     setDescription('');
     setLinks([]);
+    if (name.trim() === '') {
+      setNameError('Поле не может быть пустым');
+      // setIsChanged(false);
+    } else {
+      setNameError('');
+    }
     setIsEditing(true); // Устанавливаем режим редактирования для нового элемента
   }, [dance, isNewItemOpen]);
-
-  // setIsEditing(true); 
 
   function handleNameChange(e) {
     const value = e.target.value;
     setName(value);
-    if (value != '') {
-      setIsChanged(true);
-    } else {
+    if (value.trim() === '') {
+      setNameError('Поле не может быть пустым');
       setIsChanged(false);
+    } else {
+      setNameError('');
+      setIsChanged(true);
     }
   }
 
@@ -52,11 +60,12 @@ export default function NewDanceItem({
       description: description,
       links: links
     };
-    onSave(newDance); // Вызов функции onSave для сохранения нового элемента
+    onSave(newDance);
     setName('');
     setDescription('');
     setLinks([]);
     setIsEditing(true);
+    setSelectedDanceIndex(0);
   }
 
   function handleNewLinkChange(event) {
@@ -69,19 +78,17 @@ export default function NewDanceItem({
       setNewLink('');
     }
   }
-
-  // function handleDeleteClick() {
-  //   setIsDeleteDancePopupOpen(true);
-  // }
-
   return (
     <div className='dance-item'>
-      {isEditing ? (
-        <button className='dance-item__save-button link' type="button" disabled={!isChanged} onClick={saveEditing}></button>
-      ) : (
-        <button className='dance-item__edit-button link' type="button" onClick={setEditing}></button>
-      )}
-      {/* <button className="dance-item__delete-button link" type='button' onClick={handleDeleteClick}></button> */}
+        <button
+          className='dance-item__save-button link'
+          type="button"
+          onClick={saveEditing}
+          disabled={name.trim() === ''}
+        >
+          <img className='save-button__img'></img>
+          Сохранить
+        </button>
       {isNewItemOpen && (
         <form className='dance-item__form'>
           <input
@@ -90,6 +97,8 @@ export default function NewDanceItem({
             value={name} 
             onChange={handleNameChange} 
           />
+          <span className={`dance-item__input-error dance-item__input-error-title ${nameError && "dance-item__input-error_active"}`}>{nameError}</span>
+
           <textarea 
             className='dance-item__description-input input' 
             value={description} 

@@ -66,22 +66,30 @@
 }
 
 .dance-item__save-button {
-  background-image: url(../../../images/EditAvatar.svg);
-  background-color: rgba(87, 176, 63, 0.8);
-  color: #000000;
-  background-repeat: no-repeat;
-  background-position: center;
   position: absolute;
-  border-radius: 50%;
-  border: none;
-  background-size: 20px 20px;
-  height: 50px;
-  width: 50px;
+  display: flex;
+  align-items: center;
   right: 50px;
   top: 50px;
   padding: 0;
   object-fit: cover;
   transition: .3s ease;
+  background-color: rgba(87, 176, 63, 0.8);
+  color: #fff;
+  border-radius: 25px;
+  border: none;
+  padding: 0 10px 0 0;
+}
+
+.save-button__img { 
+  background-image: url(../../../images/EditAvatar.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 50%;
+  background-size: 20px 20px;
+  height: 50px;
+  width: 50px;
 }
 
 .dance-item__save-button:disabled {
@@ -100,7 +108,7 @@
 .dance-item__title-input {
   width: 70%;
   font-size: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   text-align: center;
   font-weight: 500;
 }
@@ -170,4 +178,22 @@
   border: none;
   filter: invert(1);
   /* outline: 1px red solid; */
+}
+
+.dance-item__input-error {
+  padding-left: 5px;
+  width: 100%;
+  font-size: 12px;
+  color: red;
+  opacity: 0;
+}
+
+.dance-item__input-error-title {
+  width: 70%;
+  align-self: center;
+  margin-bottom: 40px;
+}
+
+.dance-item__input-error_active {
+  opacity: 1;
 }

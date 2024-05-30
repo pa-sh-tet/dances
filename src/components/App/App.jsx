@@ -6,6 +6,7 @@ import Dances from '../Dances/Dances';
 import Main from '../Main/Main';
 import Login from '../Login/Login';
 import AdminPage from '../AdminPage/AdminPage';
+import { getDances, getUsers, addUser, deleteUser, addDance, deleteDance } from '../../utils/MainApi';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -16,6 +17,8 @@ export default function App() {
   const [selectedDanceIndex, setSelectedDanceIndex] = useState(0);
 
   const navigate = useNavigate();
+  // const [danceList, setDanceList] = useState([]);
+  // const [usersList, setUserList] = useState([]);
 
   const [danceList, setDanceList] = useState([
     {
@@ -45,6 +48,22 @@ export default function App() {
       ],
     },
   ]);
+  
+  const mainCodeword = 'admin';
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dances", { replace: true });
+    } else {
+      navigate("/main", { replace: true });
+    }
+  }, []);
+  
+
+  useEffect(() => {
+    fetchDances();
+    fetchUsers();
+  }, []);
 
   const [usersList, setUserList] = useState([
     {
@@ -63,21 +82,9 @@ export default function App() {
       fio: 'Петорв Иван Иванович',
       date: '22.02.1995', 
       login: 'admin',
-      password: 'asdasda',
+      password: 'admin',
     }
   ]);
-  
-  const mainCodeword = 'admin';
-
-
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/dances", { replace: true });
-    } else {
-      navigate("/main", { replace: true });
-    }
-  }, []);
 
   function handleLogin(login, password) {
     // Проверяем каждый объект в массиве usersList
@@ -95,8 +102,16 @@ export default function App() {
     setDanceList(prevDanceList => [...prevDanceList, newDance]);
   };
 
-  const handleSaveUser = (newUser) => {
-    setUserList(prevUserList => [...prevUserList, newUser]);
+  const handleSaveUser = (newUser, index) => {
+    setUserList(prevUserList => {
+      const updatedUserList = [...prevUserList];
+      if (index !== undefined && index !== null) {
+        updatedUserList[index] = newUser;
+      } else {
+        updatedUserList.push(newUser);
+      }
+      return updatedUserList;
+    });
   };
 
   const handleDeleteDance = (index) => {
@@ -104,15 +119,86 @@ export default function App() {
     updatedDanceList.splice(index, 1);
     setDanceList(updatedDanceList);
     setSelectedDanceIndex(0);
+    closeAllPopups();
   };
 
   const handleDeleteUser = (index) => {
     const updatedUserList = [...usersList];
     updatedUserList.splice(index, 1);
     setUserList(updatedUserList);
+    closeAllPopups();
   };
 
-  
+  // const fetchDances = async () => {
+  //   try {
+  //     const { data } = await getDances();
+  //     setDanceList(data);
+  //   } catch (error) {
+  //     console.error('Error fetching dances:', error);
+  //   }
+  // };
+
+  // const fetchUsers = async () => {
+  //   try {
+  //     const { data } = await getUsers();
+  //     setUserList(data);
+  //   } catch (error) {
+  //     console.error('Error fetching users:', error);
+  //   }
+  // };
+
+  // const handleLogin = (login, password) => {
+  //   for (const user of usersList) {
+  //     if (user.login === login && user.password === password) {
+  //       setIsLoggedIn(true);
+  //       navigate('/dances');
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // };
+
+  // const handleSaveDance = async (newDance) => {
+  //   try {
+  //     const { data } = await addDance(newDance);
+  //     setDanceList(prevDanceList => [...prevDanceList, data]);
+  //   } catch (error) {
+  //     console.error('Error adding dance:', error);
+  //   }
+  // };
+
+  // const handleSaveUser = async (newUser) => {
+  //   try {
+  //     const { data } = await addUser(newUser);
+  //     setUserList(prevUserList => [...prevUserList, data]);
+  //   } catch (error) {
+  //     console.error('Error adding user:', error);
+  //   }
+  // };
+
+  // const handleDeleteDance = async (index) => {
+  //   const danceToDelete = danceList[index];
+  //   try {
+  //     await deleteDance(danceToDelete._id);
+  //     setDanceList(prevDanceList => prevDanceList.filter((_, i) => i !== index));
+  //     setSelectedDanceIndex(0);
+  //     closeAllPopups();
+  //   } catch (error) {
+  //     console.error('Error deleting dance:', error);
+  //   }
+  // };
+
+  // const handleDeleteUser = async (index) => {
+  //   const userToDelete = usersList[index];
+  //   try {
+  //     await deleteUser(userToDelete._id);
+  //     setUserList(prevUserList => prevUserList.filter((_, i) => i !== index));
+  //     closeAllPopups();
+  //   } catch (error) {
+  //     console.error('Error deleting user:', error);
+  //   }
+  // };
+
 
   const closeAllPopups = () => {
     setIsDeleteDancePopupOpen(false);

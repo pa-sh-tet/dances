@@ -18,6 +18,12 @@ export default function AdminPage({
     login: '',
     password: ''
   });
+  const [errors, setErrors] = useState({
+    fio: '',
+    // date: '',
+    login: '',
+    password: ''
+  });
 
   const handleAddUserClick = () => {
     setNewUser({
@@ -26,16 +32,35 @@ export default function AdminPage({
       login: '',
       password: ''
     });
+    setErrors({
+      fio: '',
+      // date: '',
+      login: '',
+      password: ''
+    });
     setIsNewUserOpen(true);
   };
 
   const handleSaveNewUser = () => {
-    if (!usersList.some(user => user.login === newUser.login)) {
-      onSave(newUser);
-      setIsNewUserOpen(false);
-    } else {
-      alert('Логин уже существует!');
+    const newErrors = {};
+    if (!newUser.fio) newErrors.fio = 'Поле ФИО не может быть пустым';
+    // if (!newUser.date) newErrors.date = 'Поле Дата рождения не может быть пустым';
+    if (!newUser.login) newErrors.login = 'Поле Логин не может быть пустым';
+    if (!newUser.password) newErrors.password = 'Поле Пароль не может быть пустым';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
+
+    if (usersList.some(user => user.login === newUser.login)) {
+      setErrors({ ...newErrors, login: 'Сотрудник с таким логином уже существует!' });
+      return;
+    }
+
+    onSave(newUser);
+    setIsNewUserOpen(false);
+    closeAllPopups();
   };
 
   return (
@@ -52,7 +77,7 @@ export default function AdminPage({
               isDeleteUserPopupOpen={isDeleteUserPopupOpen}
               setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen}
               closeAllPopups={closeAllPopups}
-              handleDeleteUser={() => handleDeleteUser(index)}
+              handleDeleteUser={handleDeleteUser}
             />
           ))}
         </ul>
@@ -73,6 +98,7 @@ export default function AdminPage({
           onChange={(e) => setNewUser({ ...newUser, fio: e.target.value })}
           className="popup__input input"
         />
+        {errors.fio && <span className="popup__input-error">{errors.fio}</span>}
         <input
           type="date"
           placeholder="Дата рождения"
@@ -80,6 +106,7 @@ export default function AdminPage({
           onChange={(e) => setNewUser({ ...newUser, date: e.target.value })}
           className="popup__input input"
         />
+        {/* {errors.date && <span className="popup__input-error">{errors.date}</span>} */}
         <input
           type="text"
           placeholder="Логин"
@@ -87,6 +114,7 @@ export default function AdminPage({
           onChange={(e) => setNewUser({ ...newUser, login: e.target.value })}
           className="popup__input input"
         />
+        {errors.login && <span className="popup__input-error">{errors.login}</span>}
         <input
           type="password"
           placeholder="Пароль"
@@ -94,6 +122,7 @@ export default function AdminPage({
           onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
           className="popup__input input"
         />
+        {errors.password && <span className="popup__input-error">{errors.password}</span>}
       </PopupWithForm>
     </section>
   );

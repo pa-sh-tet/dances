@@ -60,6 +60,7 @@ export default function Dances({
           closeAllPopups={closeAllPopups}
           isNewItemOpen={isNewItemOpen}
           onSave={handleSave}
+          setSelectedDanceIndex={setSelectedDanceIndex}
         />
       )}
     </section>

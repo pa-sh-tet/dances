@@ -5,7 +5,7 @@ export default function PopupWithForm({ title, name, children, isOpen, buttonTex
     event.preventDefault(); // Предотвращение отправки формы
     onSubmit(); // Вызов обработчика onSubmit
     // setIsDeletePopupOpen(false);
-    onClose();
+    // onClose();
   }
   
   return (
