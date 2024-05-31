@@ -40,7 +40,7 @@ export default function Login({
   return (
     <div className='login'>
       <div className="login__container">
-        <Link className='login__logo link' to='/'></Link>
+        <Link className='login__logo link' to='/main'></Link>
         <h2 className='login__title'>Рады видеть!</h2>
         <form className='login__form' onSubmit={handleSubmit}>
           <div className="login__section">
