@@ -39,7 +39,6 @@ export default function Dances({
       />
       {danceList[selectedDanceIndex] && (!isNewItemOpen) && (
         <DanceItem
-          isAdmin={isAdmin}
           isModifing={isModifing}
           dance={danceList[selectedDanceIndex]}
           handleDeleteDance={() => handleDeleteDance(selectedDanceIndex)}
@@ -47,10 +46,9 @@ export default function Dances({
           setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
           closeAllPopups={closeAllPopups}
           isNewItemOpen={isNewItemOpen}
-          onSave={handleSave}
         />
       )}
-      {(isNewItemOpen || danceList.length == 0)  && (
+      {(isNewItemOpen || (isNewItemOpen && danceList.length == 0 && isAdmin))  && (
         <NewDanceItem
           isAdmin={isAdmin}
           dance={danceList[selectedDanceIndex]}
@@ -62,6 +60,9 @@ export default function Dances({
           onSave={handleSave}
           setSelectedDanceIndex={setSelectedDanceIndex}
         />
+      )}
+      {danceList.length == 0 && !isNewItemOpen && (
+        <h3 className='dances__empty'>На данный момент танцев нет</h3>
       )}
     </section>
   );

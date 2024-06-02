@@ -50,7 +50,7 @@ export default function App() {
       const data = await api.login({ login, password });
       if (data.success) {
         setIsLoggedIn(true);
-        setIsAdmin(data.isAdmin);
+        // setIsAdmin(data.isAdmin);
         navigate('/dances');
         return true;
       }
@@ -111,11 +111,77 @@ export default function App() {
       <div className='page'>
         <div className='app'>
           <Routes>
-            <Route path="/signin" element={<Login onLogin={handleLogin} setIsAdmin={setIsAdmin} mainCodeword={mainCodeword} />} />
-            <Route path="/main" element={<><Header isLoggedIn={isLoggedIn} isAdmin={isAdmin} isModifing={isModifing} setIsModifing={setIsModifing} setIsLoggedIn={setIsLoggedIn} /><Main /></>} />
-            <Route path="/dances" element={<><ProtectedRouteElement element={Header} isAdmin={isAdmin} isLoggedIn={isLoggedIn} isModifing={isModifing} setIsModifing={setIsModifing} setIsLoggedIn={setIsLoggedIn} /><ProtectedRouteElement element={Dances} handleSave={handleSaveDance} danceList={danceList} handleDeleteDance={handleDeleteDance} isAdmin={isAdmin} isModifing={isModifing} isLoggedIn={isLoggedIn} closeAllPopups={closeAllPopups} isDeleteDancePopupOpen={isDeleteDancePopupOpen} setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen} selectedDanceIndex={selectedDanceIndex} setSelectedDanceIndex={setSelectedDanceIndex} /></>} />
-            <Route path="/admin" element={<><ProtectedRouteElement element={Header} isAdmin={isAdmin} isLoggedIn={isLoggedIn} isModifing={isModifing} setIsModifing={setIsModifing} setIsLoggedIn={setIsLoggedIn} /><ProtectedRouteElement element={AdminPage} UsersList={usersList} isLoggedIn={isLoggedIn} onSave={handleSaveUser} isDeleteUserPopupOpen={isDeleteUserPopupOpen} setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen} closeAllPopups={closeAllPopups} handleDeleteUser={handleDeleteUser} usersList={usersList} /></>} />
-            <Route path="*" element={<Navigate to={isLoggedIn ? "/dances" : "/main"} replace />} />
+            <Route path="/signin" element={
+              <Login
+                onLogin={handleLogin}
+                setIsAdmin={setIsAdmin}
+                mainCodeword={mainCodeword}
+              />
+            } />
+            <Route path="/main" element={
+              <>
+                <Header
+                  isLoggedIn={isLoggedIn}
+                  isAdmin={isAdmin}
+                  isModifing={isModifing}
+                  setIsModifing={setIsModifing}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
+                <Main />
+              </>
+            } />
+            <Route path="/dances" element={
+              <>
+                <ProtectedRouteElement
+                  element={Header}
+                  isAdmin={isAdmin}
+                  isLoggedIn={isLoggedIn}
+                  isModifing={isModifing}
+                  setIsModifing={setIsModifing}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
+                <ProtectedRouteElement
+                  element={Dances}
+                  handleSave={handleSaveDance}
+                  danceList={danceList}
+                  handleDeleteDance={handleDeleteDance}
+                  isAdmin={isAdmin}
+                  isModifing={isModifing}
+                  isLoggedIn={isLoggedIn}
+                  closeAllPopups={closeAllPopups}
+                  isDeleteDancePopupOpen={isDeleteDancePopupOpen}
+                  setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
+                  selectedDanceIndex={selectedDanceIndex}
+                  setSelectedDanceIndex={setSelectedDanceIndex}
+                />
+              </>
+            } />
+            <Route path="/admin" element={
+              <>
+                <ProtectedRouteElement
+                  element={Header}
+                  isAdmin={isAdmin}
+                  isLoggedIn={isLoggedIn}
+                  isModifing={isModifing}
+                  setIsModifing={setIsModifing}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
+                <ProtectedRouteElement
+                  element={AdminPage}
+                  UsersList={usersList}
+                  isLoggedIn={isLoggedIn}
+                  onSave={handleSaveUser}
+                  isDeleteUserPopupOpen={isDeleteUserPopupOpen}
+                  setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen}
+                  closeAllPopups={closeAllPopups}
+                  handleDeleteUser={handleDeleteUser}
+                  usersList={usersList}
+                />
+              </>
+            } />
+            <Route path="*" element={
+              <Navigate to={isLoggedIn ? "/dances" : "/main"} replace />
+            } />
           </Routes>
         </div>
       </div>

@@ -5,3 +5,11 @@
   flex-direction: row;
   border-top: 2px #000000 solid;
 }
+
+.dances__empty {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 400;
+  margin-left: 120px;
+}

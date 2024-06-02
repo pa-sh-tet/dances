@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PopupWithForm from '../../PopupWithForm/PopupWithForm';
 
 export default function DanceItem({
-  isAdmin,
   dance,
   handleDeleteDance,
   closeAllPopups,
   setIsDeleteDancePopupOpen,
   isDeleteDancePopupOpen,
   isNewItemOpen,
-  onSave,
   isModifing
 }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -70,7 +68,7 @@ export default function DanceItem({
 
   return (
     <div className='dance-item'>
-      {isAdmin && isModifing && (isEditing ? (
+      {isModifing && (isEditing ? (
         <button
           className='dance-item__save-button link'
           type="button"
@@ -83,8 +81,8 @@ export default function DanceItem({
       ) : (
         <button className='dance-item__edit-button link' type="button" onClick={setEditing}></button>
       ))}
-      {isAdmin && isModifing && <button className="dance-item__delete-button link" type='button' onClick={handleDeleteClick}></button>}
-      {isAdmin && isEditing ? (
+      {isModifing && <button className="dance-item__delete-button link" type='button' onClick={handleDeleteClick} disabled={isEditing}></button>}
+      {isEditing ? (
         <form className='dance-item__form'>
           <input
             type="text"

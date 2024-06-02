@@ -80,6 +80,7 @@ export default function NewDanceItem({
   }
   return (
     <div className='dance-item'>
+      {/* {dance != null && isEditing && */}
         <button
           className='dance-item__save-button link'
           type="button"
@@ -89,6 +90,7 @@ export default function NewDanceItem({
           <img className='save-button__img'></img>
           Сохранить
         </button>
+      {/* } */}
       {isNewItemOpen && (
         <form className='dance-item__form'>
           <input

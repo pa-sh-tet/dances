@@ -5,8 +5,9 @@ class Api {
 
   _getResponse(res) {
     if (res.ok) {
-      return res.json();
+      return res.text().then(text => text ? JSON.parse(text) : {});
     }
+
     return Promise.reject(`Возникла ошибка: ${res.status}`);
   }
 
@@ -91,7 +92,7 @@ class Api {
 }
 
 const apiConfig = {
-  url: 'http://localhost:5000', // замените на ваш реальный URL
+  url: 'http://localhost:5000',
 };
 
 export const api = new Api(apiConfig);
