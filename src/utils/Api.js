@@ -95,7 +95,7 @@ class Api {
 }
 
 const apiConfig = {
-  url: 'http://80.78.243.127/api',
+  url: 'http://80.78.243.127',
 };
 
 export const api = new Api(apiConfig);
