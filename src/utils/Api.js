@@ -11,7 +11,6 @@ class Api {
     return Promise.reject(`Возникла ошибка: ${res.status}`);
   }
 
-  // Получение всех танцев
   getDances() {
     return fetch(`${this._url}/dances`, {
       headers: {
@@ -22,7 +21,6 @@ class Api {
     }).then(this._getResponse);
   }
 
-  // Получение всех пользователей
   getUsers() {
     return fetch(`${this._url}/users`, {
       headers: {
@@ -33,7 +31,6 @@ class Api {
     }).then(this._getResponse);
   }
 
-  // Добавление нового танца
   addDance(data) {
     return fetch(`${this._url}/dances`, {
       headers: {
@@ -45,7 +42,6 @@ class Api {
     }).then(this._getResponse);
   }
 
-  // Удаление танца
   deleteDance(id) {
     return fetch(`${this._url}/dances/${id}`, {
       headers: {
@@ -56,7 +52,6 @@ class Api {
     }).then(this._getResponse);
   }
 
-  // Добавление нового пользователя
   addUser(data) {
     return fetch(`${this._url}/users`, {
       headers: {
@@ -68,7 +63,6 @@ class Api {
     }).then(this._getResponse);
   }
 
-  // Удаление пользователя
   deleteUser(id) {
     return fetch(`${this._url}/users/${id}`, {
       headers: {
@@ -79,7 +73,6 @@ class Api {
     }).then(this._getResponse);
   }
 
-  // Логин пользователя
   login(data) {
     return fetch(`${this._url}/login`, {
       headers: {
