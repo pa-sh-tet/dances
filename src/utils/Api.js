@@ -90,8 +90,15 @@ class Api {
       },
       method: 'POST',
       body: JSON.stringify(data),
-    }).then(this._getResponse);
-  }
+    })
+    .then(res => {
+      return res.json().then(json => ({
+        status: res.status,
+        ok: res.ok,
+        json
+      }));
+    });
+  }  
 }
 
 const apiConfig = {

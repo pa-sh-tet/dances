@@ -12,21 +12,13 @@ export default function Contacts() {
 
     try {
       const response = await api.sendContact({ name, phone, message });
-      //  fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ name, phone, message }),
-      // });
-
       if (response.ok) {
         setStatus('Заявка отправлена успешно!');
         setName('');
         setPhone('');
         setMessage('');
       } else {
-        setStatus('Ошибка при отправке заявки.');
+        setStatus(`Ошибка при отправке заявки: ${response.json.message || response.status}`);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -65,7 +57,7 @@ export default function Contacts() {
             onChange={(e) => setMessage(e.target.value)}
             required
           />
-          <button type='submit' className='contacts__button'>Отправить</button>
+          <button type='submit' className='contacts__button link'>Отправить</button>
         </form>
         {status && <p className='contacts__status'>{status}</p>}
       </div>
