@@ -8,16 +8,16 @@ export default function User({
   isDeleteUserPopupOpen,
   setIsDeleteUserPopupOpen,
   closeAllPopups,
-  handleDeleteUser
+  handleDeleteUser,
+  handleUpdateUser
 }) {
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-  const [fio, setFio] = useState('');
-  const [date, setDate] = useState('');
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
+  const [fio, setFio] = useState(user.fio);
+  const [date, setDate] = useState(user.date);
+  const [login, setLogin] = useState(user.login);
+  const [password, setPassword] = useState(user.password);
   const [errors, setErrors] = useState({
     fio: '',
-    // date: '',
     login: '',
     password: ''
   });
@@ -32,7 +32,6 @@ export default function User({
   function handleSaveChanges() {
     const newErrors = {};
     if (!fio) newErrors.fio = 'Поле ФИО не может быть пустым';
-    // if (!date) newErrors.date = 'Поле Дата рождения не может быть пустым';
     if (!login) newErrors.login = 'Поле Логин не может быть пустым';
     if (!password) newErrors.password = 'Поле Пароль не может быть пустым';
 
@@ -41,14 +40,14 @@ export default function User({
       return;
     }
 
-    // const updatedUser = {
-      user.fio = fio;
-      user.date = date;
-      user.login = login;
-      user.password = password;
-    // };
+    const updatedUser = {
+      fio,
+      date,
+      login,
+      password
+    };
 
-    // onSave(updatedUser, index); // Сохранение изменений
+    handleUpdateUser(user._id, updatedUser); // Сохранение изменений
     setIsEditPopupOpen(false);
   }
 
@@ -57,7 +56,7 @@ export default function User({
   }
 
   function handleConfirmDelete() {
-    handleDeleteUser(index - 1); // Удалить пользователя с правильным индексом
+    handleDeleteUser(user._id); // Удалить пользователя с правильным ID
     closeAllPopups();
   }
 
@@ -103,7 +102,6 @@ export default function User({
           onChange={(e) => setDate(e.target.value)}
           className="popup__input input"
         />
-        {/* {errors.date && <span className="popup__input-error">{errors.date}</span>} */}
         <input
           type="text"
           placeholder="Логин"

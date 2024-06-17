@@ -3,13 +3,13 @@ import User from './User/User';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 export default function AdminPage({
-  UsersList,
+  usersList,
   onSave,
   isDeleteUserPopupOpen,
   setIsDeleteUserPopupOpen,
   closeAllPopups,
   handleDeleteUser,
-  usersList
+  handleUpdateUser
 }) {
   const [isNewUserOpen, setIsNewUserOpen] = useState(false);
   const [newUser, setNewUser] = useState({
@@ -20,7 +20,6 @@ export default function AdminPage({
   });
   const [errors, setErrors] = useState({
     fio: '',
-    // date: '',
     login: '',
     password: ''
   });
@@ -34,7 +33,6 @@ export default function AdminPage({
     });
     setErrors({
       fio: '',
-      // date: '',
       login: '',
       password: ''
     });
@@ -44,7 +42,6 @@ export default function AdminPage({
   const handleSaveNewUser = () => {
     const newErrors = {};
     if (!newUser.fio) newErrors.fio = 'Поле ФИО не может быть пустым';
-    // if (!newUser.date) newErrors.date = 'Поле Дата рождения не может быть пустым';
     if (!newUser.login) newErrors.login = 'Поле Логин не может быть пустым';
     if (!newUser.password) newErrors.password = 'Поле Пароль не может быть пустым';
 
@@ -68,16 +65,17 @@ export default function AdminPage({
       <div className='admin__container'>
         <h3 className='admin__title'>Список сотрудников</h3>
         <ul className='admin__list'>
-          {UsersList.map((user, index) => (
+          {usersList.map((user, index) => (
             <User
               key={index}
               user={user}
               index={index + 1}
-              onSave={onSave} 
+              onSave={onSave}
               isDeleteUserPopupOpen={isDeleteUserPopupOpen}
               setIsDeleteUserPopupOpen={setIsDeleteUserPopupOpen}
               closeAllPopups={closeAllPopups}
               handleDeleteUser={handleDeleteUser}
+              handleUpdateUser={handleUpdateUser}
             />
           ))}
         </ul>
@@ -106,7 +104,6 @@ export default function AdminPage({
           onChange={(e) => setNewUser({ ...newUser, date: e.target.value })}
           className="popup__input input"
         />
-        {/* {errors.date && <span className="popup__input-error">{errors.date}</span>} */}
         <input
           type="text"
           placeholder="Логин"

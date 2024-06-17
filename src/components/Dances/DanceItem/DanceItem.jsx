@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PopupWithForm from '../../PopupWithForm/PopupWithForm';
+import { api } from '../../../utils/Api';
 
 export default function DanceItem({
   dance,
@@ -8,7 +9,8 @@ export default function DanceItem({
   setIsDeleteDancePopupOpen,
   isDeleteDancePopupOpen,
   isNewItemOpen,
-  isModifing
+  isModifing,
+  updateDanceInState // новая функция для обновления состояния
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newLink, setNewLink] = useState('');
@@ -34,11 +36,19 @@ export default function DanceItem({
     setLinks(prevLinks => prevLinks.filter((_, index) => index !== indexToDelete));
   }
 
-  function saveEditing() {
+  async function saveEditing() {
     setIsEditing(false);
-    dance.title = name;
-    dance.description = description;
-    dance.links = [...links];
+    const updatedDance = {
+      title: name,
+      description: description,
+      links: [...links]
+    };
+    try {
+      const updatedDanceFromServer = await api.updateDance(dance._id, updatedDance);
+      updateDanceInState(updatedDanceFromServer); // обновляем состояние родительского компонента
+    } catch (error) {
+      console.error('Error updating dance:', error);
+    }
   }
 
   function handleNewLinkChange(event) {
@@ -147,5 +157,5 @@ export default function DanceItem({
         title="Вы уверены, что хотите удалить этот танец?"
       />
     </div>
-  )
+  );
 }

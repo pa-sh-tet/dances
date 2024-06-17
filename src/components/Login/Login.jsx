@@ -89,7 +89,6 @@ export default function Login({
           </div>
           <button className='login__submit-button'>Войти</button>
           <span className={`login__submit-error ${isCorrect ? '' : 'login__submit-error_active'}`}>Неправильный логин или пароль</span>
-          {/* <p className='login__register-text'>Ещё не зарегистрированы?<Link to='/signup' className='login__register-link link'>Регистрация</Link></p> */}
         </form>
       </div>
     </div>

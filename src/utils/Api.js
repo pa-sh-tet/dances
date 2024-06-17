@@ -98,11 +98,37 @@ class Api {
         json
       }));
     });
-  }  
+  }
+
+  updateDance(id, data) {
+    return fetch(`${this._url}/dances/${id}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+      },
+      method: 'PATCH', // Изменение метода запроса на PATCH
+      body: JSON.stringify(data),
+    }).then(this._getResponse);
+  }
+
+  updateUser(id, data) {
+    return fetch(`${this._url}/users/${id}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+      },
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }).then(this._getResponse);
+  }
 }
 
 const apiConfig = {
+  // Рабочий вариант:
   url: 'http://80.78.243.127',
+
+  // Для демонстрации:
+  // url: 'http://localhost:5000',
 };
 
 export const api = new Api(apiConfig);

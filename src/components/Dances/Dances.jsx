@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DanceItem from './DanceItem/DanceItem';
 import Menu from './Menu/Menu';
 import NewDanceItem from './NewDanceItem/NewDanceItem';
@@ -17,6 +17,12 @@ export default function Dances({
 }) {
   const [isNewItemOpen, setIsNewItemOpen] = useState(false);
 
+  useEffect(() => {
+    if (danceList.length > 0 && selectedDanceIndex === null) {
+      setSelectedDanceIndex(0);
+    }
+  }, [danceList, selectedDanceIndex, setSelectedDanceIndex]);
+
   const handleAddItemClick = () => {
     setIsNewItemOpen(true);
   };
@@ -25,7 +31,12 @@ export default function Dances({
     setIsNewItemOpen(false);
     setSelectedDanceIndex(index);
   };
-  
+
+  function updateDanceInState(updatedDance) {
+    danceList[selectedDanceIndex] = updatedDance;
+    setSelectedDanceIndex(selectedDanceIndex);
+  }
+
   return (
     <section className='dances'>
       <Menu
@@ -46,9 +57,10 @@ export default function Dances({
           setIsDeleteDancePopupOpen={setIsDeleteDancePopupOpen}
           closeAllPopups={closeAllPopups}
           isNewItemOpen={isNewItemOpen}
+          updateDanceInState={updateDanceInState}
         />
       )}
-      {(isNewItemOpen || (isNewItemOpen && danceList.length == 0 && isAdmin))  && (
+      {(isNewItemOpen || (isNewItemOpen && danceList.length === 0 && isAdmin)) && (
         <NewDanceItem
           isAdmin={isAdmin}
           dance={danceList[selectedDanceIndex]}
@@ -61,7 +73,7 @@ export default function Dances({
           setSelectedDanceIndex={setSelectedDanceIndex}
         />
       )}
-      {danceList.length == 0 && !isNewItemOpen && (
+      {danceList.length === 0 && !isNewItemOpen && (
         <h3 className='dances__empty'>На данный момент танцев нет</h3>
       )}
     </section>
